@@ -1,4 +1,4 @@
-const PALETTES = {
+export const PALETTES = {
   'default-dark': {
     name: 'Default Dark',
     bg: '#1e1e1e',

@@ -9,7 +9,8 @@
     "scripting"
   ],
   "background": {
-    "service_worker": "background.js"
+    "service_worker": "background.js",
+    "type": "module"
   },
   "action": {
     "default_popup": "popup.html",
@@ -23,5 +24,15 @@
     "16": "images/icons/icon16.png",
     "48": "images/icons/icon48.png",
     "128": "images/icons/icon128.png"
-  }
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "content.js"
+      ]
+    }
+  ]
 }
