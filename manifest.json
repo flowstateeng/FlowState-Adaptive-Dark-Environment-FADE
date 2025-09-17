@@ -3,6 +3,29 @@
   "name": "FlowState Adaptive Dark Environment (F.A.D.E.)",
   "version": "0.0.1",
   "description": "A sophisticated dark mode extension with per-site controls and a variety of color palettes.",
+  "permissions": [
+    "storage",
+    "scripting"
+  ],
+  "action": {
+    "default_popup": "control-panel.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "themes/slate.css",
+        "themes/forest.css",
+        "themes/midnight.css",
+        "themes/plum.css"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ],
   "icons": {
     "16": "images/icons/icon16.png",
     "48": "images/icons/icon48.png",

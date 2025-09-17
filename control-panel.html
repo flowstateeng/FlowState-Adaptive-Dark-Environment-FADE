@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>FlowState Adaptive Dark Environment (F.A.D.E.)</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -12,15 +13,24 @@
   <h3>Global Settings</h3>
   <div id="global-controls">
     <h4>Enable Dark Mode For All Sites</h4>
-    <!-- PLACE GLOBAL TOGGLE SWITCH HERE -->
+    <label class="switch">
+      <input type="checkbox" id="global-toggle">
+      <span class="slider round"></span>
+    </label>
   </div>
 
   <hr>
 
   <div id="theme-controls">
-    <h3>Theme</h3>  
-    <!-- ADD SELECTORS HERE -->
+    <h3>Theme</h3>
+    <div class="theme-buttons">
+      <button class="theme-button" id="slate" style="background-color: #34495e;"></button>
+      <button class="theme-button" id="forest" style="background-color: #27ae60;"></button>
+      <button class="theme-button" id="midnight" style="background-color: #2980b9;"></button>
+      <button class="theme-button" id="plum" style="background-color: #8e44ad;"></button>
+    </div>
   </div>
 
+  <script src="control-panel.js"></script>
 </body>
 </html>
