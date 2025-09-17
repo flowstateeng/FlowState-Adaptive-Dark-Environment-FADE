@@ -1,0 +1,26 @@
+/*
+  A simple, universal dark mode using filter inversion.
+  This is a broad approach and might not be perfect for all sites.
+  It also inverts images and videos, so we add exceptions.
+*/
+html {
+    filter: invert(1) hue-rotate(60deg);
+    background-color: #646464; /* Ensures a dark background even on blank pages */
+}
+
+/* Re-invert images, videos, and elements with background images to display them correctly. */
+img,
+video,
+iframe,
+[style*="background-image"] {
+    filter: invert(1) hue-rotate(300deg);
+}
+
+/* Invert text to alt color */
+/* a,
+p,
+h1,
+h2,
+h3 {
+    color: invert(1) hue-rotate(60deg);
+} */
