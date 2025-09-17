@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dark Mode Control Panel</title>
+  <style>
+    body {
+      width: 220px;
+      font-family: Arial, sans-serif;
+      padding: 10px;
+    }
+    h3, h4 {
+      text-align: center;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 5px;
+      margin-top: 5px;
+    }
+    .control-group {
+      margin-bottom: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    label {
+      display: flex;
+      align-items: center;
+    }
+    input[type="checkbox"] {
+      margin-right: 10px;
+    }
+    select {
+      width: 100%;
+      margin-top: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h3>Global Settings</h3>
+  <div class="control-group">
+    <label for="global-switch">Enable Dark Mode</label>
+    <input type="checkbox" id="global-switch">
+  </div>
+
+  <hr>
+
+  <h4>Current Site Settings</h4>
+  <p id="current-site-hostname" style="text-align: center; font-weight: bold;"></p>
+  <div class="control-group">
+    <label for="site-switch">Enable on this site</label>
+    <input type="checkbox" id="site-switch">
+  </div>
+
+  <div class="control-group">
+    <label for="palette-select">Color Palette:</label>
+  </div>
+  <select id="palette-select">
+    <!-- Options will be populated by JavaScript -->
+  </select>
+
+  <script src="storage.js"></script>
+  <script src="palettes.js"></script>
+  <script src="actions.js"></script>
+  <script src="main.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>
