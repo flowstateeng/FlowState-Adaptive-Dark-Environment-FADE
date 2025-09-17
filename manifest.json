@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Dark Mode Extension",
-  "version": "1.0",
-  "description": "A simple dark mode extension with per-site controls.",
+  "name": "FlowState Adaptive Dark Environment (F.A.D.E.)",
+  "version": "0.0.1",
+  "description": "A sophisticated dark mode extension with per-site controls and a variety of color palettes.",
   "permissions": [
     "storage",
     "tabs",
@@ -14,14 +14,14 @@
   "action": {
     "default_popup": "popup.html",
     "default_icon": {
-      "16": "images/icon16.png",
-      "48": "images/icon48.png",
-      "128": "images/icon128.png"
+      "16": "images/icons/icon16.png",
+      "48": "images/icons/icon48.png",
+      "128": "images/icons/icon128.png"
     }
   },
   "icons": {
-    "16": "images/icon16.png",
-    "48": "images/icon48.png",
-    "128": "images/icon128.png"
+    "16": "images/icons/icon16.png",
+    "48": "images/icons/icon48.png",
+    "128": "images/icons/icon128.png"
   }
 }
