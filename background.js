@@ -25,28 +25,32 @@ const removeCSS = (tabId, theme) => {
 // Listen for messages from the control panel
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.type === 'UPDATE_STATE') {
-    chrome.storage.sync.get(['isGloballyEnabled', 'theme'], (oldState) => {
-      const newState = { ...oldState, ...request.payload };
+    // Get the current state from storage
+    chrome.storage.sync.get(['isGloballyEnabled', 'theme'], (currentState) => {
+      // Determine the new state from the message payload
+      const newState = { ...currentState, ...request.payload };
 
-      chrome.storage.sync.set(newState, () => {
-        chrome.tabs.query({ url: ["http://*/*", "https://*/*", "file://*/*"] }, (tabs) => {
-          for (const tab of tabs) {
-            // Case 1: Dark mode was on, now it's off
-            if (oldState.isGloballyEnabled && !newState.isGloballyEnabled) {
-              removeCSS(tab.id, oldState.theme);
-            }
-            // Case 2: Dark mode was off, now it's on
-            else if (!oldState.isGloballyEnabled && newState.isGloballyEnabled) {
-              injectCSS(tab.id, newState.theme);
-            }
-            // Case 3: Dark mode was on, and theme changed
-            else if (oldState.isGloballyEnabled && newState.isGloballyEnabled && oldState.theme !== newState.theme) {
-              removeCSS(tab.id, oldState.theme);
-              injectCSS(tab.id, newState.theme);
-            }
+      // Decide what to do based on the state change
+      chrome.tabs.query({ url: ["http://*/*", "https://*/*", "file://*/*"] }, (tabs) => {
+        for (const tab of tabs) {
+          // Case 1: Dark mode is being turned OFF
+          if (currentState.isGloballyEnabled && !newState.isGloballyEnabled) {
+            removeCSS(tab.id, currentState.theme);
           }
-        });
+          // Case 2: Dark mode is being turned ON
+          else if (!currentState.isGloballyEnabled && newState.isGloballyEnabled) {
+            injectCSS(tab.id, newState.theme);
+          }
+          // Case 3: Theme is changing while dark mode is ON
+          else if (currentState.isGloballyEnabled && newState.isGloballyEnabled && currentState.theme !== newState.theme) {
+            removeCSS(tab.id, currentState.theme);
+            injectCSS(tab.id, newState.theme);
+          }
+        }
       });
+
+      // After dispatching changes, save the new state
+      chrome.storage.sync.set(newState);
     });
     // Return true to indicate you wish to send a response asynchronously
     return true;

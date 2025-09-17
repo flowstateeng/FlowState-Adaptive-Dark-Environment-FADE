@@ -13,7 +13,6 @@ chrome.storage.sync.get(['isGloballyEnabled', 'theme'], ({ isGloballyEnabled, th
 // Add event listener for the global toggle
 globalToggle.addEventListener('change', (event) => {
   const isGloballyEnabled = event.target.checked;
-  chrome.storage.sync.set({ isGloballyEnabled });
   chrome.runtime.sendMessage({
     type: 'UPDATE_STATE',
     payload: { isGloballyEnabled }
@@ -24,7 +23,6 @@ globalToggle.addEventListener('change', (event) => {
 themeButtons.forEach(button => {
   button.addEventListener('click', () => {
     const theme = button.id;
-    chrome.storage.sync.set({ theme });
     chrome.runtime.sendMessage({
       type: 'UPDATE_STATE',
       payload: { theme }
